@@ -24,5 +24,17 @@ namespace ExtendedResourceSample
         {
             InitializeComponent();
         }
+
+        private void BtnClickMe_OnClick(object sender, RoutedEventArgs e)
+        {
+            // DockPanel Resource
+            lbResult.Items.Add(pnlMain.FindResource("strPanel").ToString());
+
+            // Window.Resources
+            lbResult.Items.Add(this.FindResource("strWindow").ToString());
+
+            // App Resources
+            lbResult.Items.Add(Application.Current.FindResource("strApp").ToString());
+        }
     }
 }

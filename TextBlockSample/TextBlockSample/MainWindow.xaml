@@ -1,0 +1,25 @@
+﻿<Window x:Class="TextBlockSample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TextBlockSample"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="200" Width="250">
+    <StackPanel>
+        <!-- LineBreak로 수동으로 개행-->
+        <TextBlock Margin="10" Foreground="Red">This is a TextBlock control<LineBreak/>
+        with multiple lines of text
+        </TextBlock>
+
+        <!-- TextTrimming 속성 CharacterEllipsis로 넘어가는 값 ... 표시되도록 함 -->
+        <TextBlock Margin="10" TextTrimming="CharacterEllipsis" Foreground="Green">
+            This is a TextBlock control with text that may not be redered completely, which will be indicated with an ellipsis.
+        </TextBlock>
+
+        <!-- TextWrapping 속성 Wrap 맞춰서 자동 개행 -->
+        <TextBlock Margin="10" TextWrapping="Wrap" Foreground="Blue">
+            This is a TextBlock control with automatically wrapped text, using the TextWrapping property.
+        </TextBlock>
+    </StackPanel>
+</Window>

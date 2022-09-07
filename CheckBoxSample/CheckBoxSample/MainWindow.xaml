@@ -1,0 +1,21 @@
+﻿<Window x:Class="CheckBoxSample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CheckBoxSample"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="170" Width="300">
+
+    <StackPanel Margin="10">
+        <Label FontWeight="Bold">Application Options</Label>
+        <StackPanel Margin="10,5">
+            <CheckBox IsThreeState="True" Name="cbAllFeatures" Checked="CbAllFeatures_OnChecked">전체 체크</CheckBox>
+            <StackPanel Margin="20,5 ">
+                <CheckBox Name="cbFeatureAbc" Checked="CbFeatures_OnChecked" Unchecked="CbFeatures_OnChecked">Enable feature ABC</CheckBox>
+                <CheckBox Name="cbFeatureXYz" Checked="CbFeatures_OnChecked" Unchecked="CbFeatures_OnChecked" IsChecked="True">Enable feature XYZ</CheckBox>
+                <CheckBox Name="cbFeatureWww" Checked="CbFeatures_OnChecked" Unchecked="CbFeatures_OnChecked">Enable feature WWW</CheckBox>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</Window>

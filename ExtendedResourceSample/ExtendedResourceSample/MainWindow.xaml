@@ -6,24 +6,23 @@
         xmlns:local="clr-namespace:ExtendedResourceSample"
         xmlns:system="clr-namespace:System;assembly=System.Runtime"
         mc:Ignorable="d"
-        Title="MainWindow" Height="160" Width="300"
+        Title="MainWindow" Height="175" Width="250"
         Background="{DynamicResource WindowBackgroundBrush}">
     <Window.Resources>
-        <system:String  x:Key="ComboBoxTitle">Items : </system:String>
-
-        <x:Array x:Key="ComboBoxItems" Type="system:String">
-            <system:String>Item #1</system:String>
-            <system:String>Item #2</system:String>
-            <system:String>Item #3</system:String>
-        </x:Array>
-
-        <LinearGradientBrush x:Key="WindowBackgroundBrush">
-            <GradientStop Offset="0" Color="Silver"></GradientStop>
-            <GradientStop Offset="1" Color="Gray"></GradientStop>
-        </LinearGradientBrush>
+       <system:String x:Key="strWindow">Hello, Window world!</system:String>
     </Window.Resources>
-    <StackPanel Margin="10">
-        <Label Content="{StaticResource ComboBoxTitle}"/>
-        <ComboBox ItemsSource="{StaticResource ComboBoxItems}"/>
-    </StackPanel>
+
+    <DockPanel Margin="10" Name="pnlMain">
+        <DockPanel.Resources>
+            <system:String x:Key="strPanel">Hello, Panel world!</system:String>
+        </DockPanel.Resources>
+
+        <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="10">
+            <Button Name="btnClickMe" Click="BtnClickMe_OnClick">Click Me!</Button>
+        </WrapPanel>
+
+        <ListBox Name="lbResult"/>
+    </DockPanel>
+
+ 
 </Window>
