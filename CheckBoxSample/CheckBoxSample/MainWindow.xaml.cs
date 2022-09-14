@@ -29,9 +29,19 @@ namespace CheckBoxSample
         {
             //전체체크를 누르면 개별 체크가 다 체크된다.
                 bool newVal = (cbAllFeatures.IsChecked == true);    
+
+                if (newVal== true){
                 cbFeatureAbc.IsChecked = newVal;
                 cbFeatureXYz.IsChecked = newVal;
                 cbFeatureWww.IsChecked = newVal;
+                }
+
+                else
+                {
+                    cbFeatureAbc.IsChecked = newVal;
+                    cbFeatureXYz.IsChecked = newVal;
+                    cbFeatureWww.IsChecked = newVal;
+            }
         }
 
         private void CbFeatures_OnChecked(object sender, RoutedEventArgs e)
