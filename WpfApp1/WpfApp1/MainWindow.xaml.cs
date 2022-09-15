@@ -26,60 +26,73 @@ namespace WpfApp1
     {
         PerformanceCounter cpu = new PerformanceCounter("Processor", "% Processor Time", "_Total");
         PerformanceCounter ram = new PerformanceCounter("Memory", "% Committed Bytes In Use");
-        BackgroundWorker _worker = null;
-        
+       
+
+        Thread t = null;
 
         public MainWindow()
         {
             InitializeComponent();
+            progressBar1.Maximum = 100;
+            progressBar2.Maximum = 100;
+            t = new Thread(Work);
+
+            t.Start();
         }
 
-        /// <summary>
-        /// 프로그레스바 컨트롤 증가 버튼 이벤트 핸들러
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void uiBtn_Start_Click(object sender, RoutedEventArgs e)
-        {
-            _worker = new BackgroundWorker();
-            _worker.WorkerReportsProgress = true;
-            _worker.DoWork += _worker_DoWork;
-            _worker.ProgressChanged += _worker_ProgressChanged;
-            _worker.RunWorkerCompleted += _worker_RunWorkerCompleted;
-            _worker.RunWorkerAsync();
-        }
+        private void Work()
 
-        /// <summary>
-        /// DoWorker 스레드 이벤트 핸들러
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void _worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            for (int i = 0; i < 100; i++)
-            {
-                
-                _worker.ReportProgress((int)ram.NextValue()); //값을 ReportProgress 매개변수로 전달
-                _worker.ReportProgress((int)cpu.NextValue()); //값을 ReportProgress 매개변수로 전달
-                Thread.Sleep(1000); //0.1초
+            // Do You Expensive Work Here!
+            while(true){
+                //This Sleep is Just For Some timepass 
+                Thread.Sleep(1000);
+                UpdateProgressBar((int)cpu.NextValue(), (int)ram.NextValue()-10);
             }
+
+            //MessageBox.Show("Finish !");
         }
 
-        private void _worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void UpdateProgressBar(int i, int j)
         {
-            uiPb_Main.Value = e.ProgressPercentage;
-            uiPb_Main2.Value = e.ProgressPercentage;
+            // Action is delegate (means a function pointer) which is Pointing towards "SetProgress" method
+            Action action1 = () => { SetProgressBar1(i); };
+            Action action2 = () => { SetProgressBar2(j); };
+
+            // Here Dispacthers Invoke (is a Syncronus)/ BegineInvoke (Is Asyncornus) in Called 
+            progressBar1.Dispatcher.BeginInvoke(action1);
+            progressBar2.Dispatcher.BeginInvoke(action2);
+
         }
 
-        /// <summary>
-        /// 프로그레스바 컨트롤 작업 끝났을 때
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void _worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void SetProgressBar1(int i)
         {
-            uiPb_Main.Value = uiPb_Main.Maximum;
-            uiPb_Main2.Value = uiPb_Main2.Maximum;
+            progressBar1.Value = i;
         }
+
+        private void SetProgressBar2(int j)
+        {
+            progressBar2.Value = j;
+        }
+
+        
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (t.IsAlive)
+                t.Abort();
+        }
+
+        //// Abort Thread Button Code
+        //private void button2_Click(object sender, RoutedEventArgs e)
+        //{
+        //    // Aborti   ng Thread here !
+        //    if (t.IsAlive)
+        //    {
+        //        t.Abort();
+        //        progressBar1.Value = 0;
+
+        //    }
+        //}
+
     }
 }

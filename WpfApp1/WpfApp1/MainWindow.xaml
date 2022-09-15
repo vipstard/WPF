@@ -5,30 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="400">
-    
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-            <Button x:Name="close_B" Content="시작" HorizontalAlignment="Center" VerticalAlignment="Center" Click="uiBtn_Start_Click" Width="80"/>
-            </StackPanel>
+        Title="MainWindow" Height="300" Width="400" Closing="Window_Closing">
 
-            <Grid Margin="10" HorizontalAlignment="Center">
-
-            <ProgressBar x:Name="uiPb_Main"  VerticalAlignment="Center" Height="30" Width="180"
-                         Minimum="0" Maximum="100" Value="0"/>
-            <TextBlock Text="{Binding ElementName=uiPb_Main,Path=Value,StringFormat={}{0:0}%}"
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,78,3.333,76.667" Width="380" Height="116">
+        <Grid Margin="10" HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="7*"/>
+                <RowDefinition Height="8*"/>
+            </Grid.RowDefinitions>
+            <TextBlock HorizontalAlignment="Center" Margin="-79,13,185,-7.333" Width="74" FontSize="10" Grid.RowSpan="2"><Run Text="CPU 사용량"/><LineBreak/><Run/></TextBlock>
+            <ProgressBar x:Name="progressBar1"  VerticalAlignment="Center" Height="30" Width="180"
+                         Minimum="0" Maximum="100" Value="0" Grid.RowSpan="2"/>
+            <TextBlock Text="{Binding ElementName=progressBar1,Path=Value,StringFormat={}{0:0}%}"
                        VerticalAlignment="Center"
-                       HorizontalAlignment="Center"/>
-            </Grid>
+                       HorizontalAlignment="Center" Margin="82,7,81,7" Grid.RowSpan="2"/>
+        </Grid>
 
-            <Grid HorizontalAlignment="Center">
-
-            <ProgressBar x:Name="uiPb_Main2"  VerticalAlignment="Center" Height="30" Width="180"
+        <Grid HorizontalAlignment="Center">
+            <TextBlock HorizontalAlignment="Center" Margin="-79,11,185,-6" Width="74" FontSize="10"><Run Text="RAM 사용량"/><LineBreak/><Run/></TextBlock>
+            <ProgressBar x:Name="progressBar2"  VerticalAlignment="Center" Height="30" Width="180"
                              Minimum="0" Maximum="100" Value="0"/>
-                <TextBlock Text="{Binding ElementName=uiPb_Main2,Path=Value,StringFormat={}{0:0}%}"
+            <TextBlock Text="{Binding ElementName=progressBar2,Path=Value,StringFormat={}{0:0}%}"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center"/>
-            </Grid>
+        </Grid>
     </StackPanel>
 
 </Window>
