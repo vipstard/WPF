@@ -33,7 +33,7 @@
     <Grid>
         <Label  x:Name="labelTest1" Content="내가만든 라벨" Margin="0,0,295,72" VerticalAlignment="Bottom" Style="{StaticResource testStyle}">
         </Label>
-        <Button x:Name="btnTest1" Content="Button" Click="ButtonBase_OnClick" HorizontalAlignment="Left" Margin="47,76,0,0" VerticalAlignment="Top" Style="{StaticResource testStyle}"/>
+        <Button x:Name="btnTest1" Content="Button" Command="{Binding TestClick}" CommandParameter="{Binding ElementName=TextBox, Path=Text}" HorizontalAlignment="Left" Margin="47,76,0,0" VerticalAlignment="Top" Style="{StaticResource testStyle}"/>
         <CheckBox x:Name="CheckBox"  Content="나의체크박스" HorizontalAlignment="Left" Margin="15,123,0,0" VerticalAlignment="Top"/>
         <RadioButton Content="RadioButton" HorizontalAlignment="Left" Margin="15,165,0,0" VerticalAlignment="Top" GroupName="MyGroup"/>
         <RadioButton Content="RadioButton" HorizontalAlignment="Left" Margin="15,185,0,0" VerticalAlignment="Top" GroupName="MyGroup"/>
