@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="FirstProject.UserControls.ThreeControls"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FirstProject.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="300"
+             x:Name="root">
+    <Grid>
+        <Label Content="{Binding MyText, ElementName=root}" HorizontalAlignment="Left" Margin="30,25,0,0" VerticalAlignment="Top"/>
+        <Button Content="{Binding MyCommand, ElementName=root}" HorizontalAlignment="Left" Margin="89,82,0,0" VerticalAlignment="Top" Height="47" Width="142"/>
+
+    </Grid>
+</UserControl>

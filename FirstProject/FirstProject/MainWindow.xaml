@@ -1,15 +1,17 @@
-﻿<Window x:Class="FirstProject.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FirstProject"
+        xmlns:UserControls="clr-namespace:FirstProject.UserControls" x:Class="FirstProject.MainWindow"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="464" Width="937">
 
     <Window.Resources>
         <Style x:Key="testStyle">
-            <Setter Property="Label.Background">
+            <Setter Property="Control.Background">
                 <Setter.Value>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="Black"/>
@@ -24,39 +26,61 @@
                 <!--<Trigger Property="Control.IsMouseOver" Value="True">
                     <Setter Property="Control.Foreground" Value="blue"></Setter>
                 </Trigger>-->
-                <DataTrigger Binding="{Binding ElementName=progressBar1, Path=Value}" Value="100">
-                    <Setter Property="Control.Visibility" Value="Hidden"></Setter>
+                <DataTrigger Binding="{Binding Value, ElementName=progressBar1}" Value="100">
+                    <Setter Property="UIElement.Visibility" Value="Hidden"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
     </Window.Resources>
     <Grid>
-        <Label  x:Name="labelTest1" Content="내가만든 라벨" Margin="0,0,295,72" VerticalAlignment="Bottom" Style="{StaticResource testStyle}">
-        </Label>
-        <Button x:Name="btnTest1" Content="Button" Command="{Binding TestClick}" CommandParameter="{Binding ElementName=TextBox, Path=Text}" HorizontalAlignment="Left" Margin="47,76,0,0" VerticalAlignment="Top" Style="{StaticResource testStyle}"/>
+        <Label  x:Name="labelTest1" Content="내가만든 라벨" Margin="0,0,295,72" VerticalAlignment="Bottom" Style="{StaticResource testStyle}"/>
+        <Button x:Name="btnTest1" Content="Button" Command="{Binding TestClick}" CommandParameter="{Binding Text, ElementName=TextBox}" HorizontalAlignment="Left" Margin="47,76,0,0" VerticalAlignment="Top" Style="{StaticResource testStyle}"/>
         <CheckBox x:Name="CheckBox"  Content="나의체크박스" HorizontalAlignment="Left" Margin="15,123,0,0" VerticalAlignment="Top"/>
         <RadioButton Content="RadioButton" HorizontalAlignment="Left" Margin="15,165,0,0" VerticalAlignment="Top" GroupName="MyGroup"/>
         <RadioButton Content="RadioButton" HorizontalAlignment="Left" Margin="15,185,0,0" VerticalAlignment="Top" GroupName="MyGroup"/>
         <RadioButton Content="RadioButton" HorizontalAlignment="Left" Margin="15,205,0,0" VerticalAlignment="Top" GroupName="MyGroup"/>
         <TextBox x:Name="TextBox" HorizontalAlignment="Left" Margin="7,241,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
         <PasswordBox HorizontalAlignment="Left" Margin="7,265,0,0" VerticalAlignment="Top" Width="120"/>
-        <ListView x:Name="ListView1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="251,0,0,208" SelectionChanged="ListView_SelectionChanged">
+        <ListView x:Name="ListView1" d:ItemsSource="{Binding MyListUser}" Margin="251,0,0,208" SelectionChanged="ListView_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="이미지" Width="300">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Width="60" Height="60" Source="{Binding UserImg}"></Image>
+                                <Image Width="60" Height="60" Source="{Binding USERIMG}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="이름" DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn Header="나이" DisplayMemberBinding="{Binding UserAge}"/>
+                    <GridViewColumn Header="이름" DisplayMemberBinding="{Binding USERNAME}"/>
+                    <GridViewColumn Header="나이" DisplayMemberBinding="{Binding USERAGE}"/>
                 </GridView>
             </ListView.View>
         </ListView>
         <Label Content="Label" HorizontalAlignment="Left" Margin="145,86,0,0" VerticalAlignment="Top" Style="{StaticResource testStyle}"/>
         <ProgressBar x:Name="progressBar1" HorizontalAlignment="Left" Height="26" Margin="252,283,0,0" VerticalAlignment="Top" Width="290" Value="{Binding ProgressValue}"/>
+
+        <UserControls:ThreeControls HorizontalAlignment="Left" Margin="624,230,0,0" MyText="내가생성한라벨"  VerticalAlignment="Top" Height="137" Width="176"/>
+        <UserControls:MyLabel HorizontalAlignment="Left" Margin="173,374,0,0" VerticalAlignment="Top" Content="123"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="173,230,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.409,1.405" Command="{Binding SecondShow}"/>
+        <Button Content="조회" HorizontalAlignment="Left" Margin="614,410,0,0" VerticalAlignment="Top"  Command="{Binding SelectClick}"/>
+        <Button Content="추가" HorizontalAlignment="Left" Margin="789,411,0,0" VerticalAlignment="Top" Command="{Binding InsertClick}"/>
+        <TextBox HorizontalAlignment="Left" Margin="652,363,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="652,388,0,0" TextWrapping="Wrap" Text="{Binding Img}" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="652,411,0,0" TextWrapping="Wrap" Text="{Binding Age}" VerticalAlignment="Top" Width="120"/>
+        <ComboBox  HorizontalAlignment="Left" Margin="803,261,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged">
+            <ComboBoxItem Content="사과"/>
+            <ComboBoxItem Content="포도"/>
+
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseLeave">
+                    <i:InvokeCommandAction Command="{Binding TestClick}"/>
+                </i:EventTrigger>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding TestClick}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
+        </ComboBox>
 
     </Grid>
 </Window>
