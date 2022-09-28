@@ -26,6 +26,8 @@
                 <!--<Trigger Property="Control.IsMouseOver" Value="True">
                     <Setter Property="Control.Foreground" Value="blue"></Setter>
                 </Trigger>-->
+
+                <!--DataTrigger 클래스는 이전의 프로퍼티 트리거의 Property를 바인딩(Binding)으로 대신하는 것을 제외하고 Trigger와 유사하다. 바인딩은 다른 엘리먼트를 참조 함-->
                 <DataTrigger Binding="{Binding Value, ElementName=progressBar1}" Value="100">
                     <Setter Property="UIElement.Visibility" Value="Hidden"/>
                 </DataTrigger>

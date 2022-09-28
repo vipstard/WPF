@@ -1,0 +1,18 @@
+﻿<Window x:Class="SecondProject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SecondProject"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+<Window.Resources>
+        <Style x:Key="testStyle">
+    <Style.Triggers>
+        <Trigger Property="Control.IsMouseCaptured" Value="True">
+            <Setter Property="Control"></Setter>
+        </Trigger>
+    </Style.Triggers>
+    </Style>
+</Window.Resources>
+</Window>
