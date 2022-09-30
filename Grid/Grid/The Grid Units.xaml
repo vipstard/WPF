@@ -1,0 +1,21 @@
+﻿<Window x:Class="Grid.The_Grid_Units"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Grid"
+        mc:Ignorable="d"
+        Title="The_Grid_Units" Height="200" Width="400">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <Button>Button1</Button>
+        <Button Grid.Column="1">Button 2 with long text</Button>
+        <Button Grid.Column="2">Button 3</Button>
+        
+        
+    </Grid>
+</Window>
